@@ -1,10 +1,10 @@
+#!/usr/bin/env python
 # Author: Daniel Palm
 # Copyright 2018
 # 
 # Implementation of L-Systems, using a simple "Turtle" for drawing, and cairo for generating a png.
 # Based on LSystem definitions from wikipedia
 
-#!/usr/bin/env python
 
 import math
 import cairo
@@ -38,6 +38,8 @@ class Turtle:
             #print "draw at %f, %f" % (newpt[0], newpt[1])
             ctx.move_to(self.loc[0], self.loc[1])
             ctx.set_line_width(0.002)
+            ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+            ctx.set_line_join(cairo.LINE_JOIN_ROUND)
             ctx.set_source_rgb(0,0,0)
             ctx.line_to(newpt[0], newpt[1])
             ctx.close_path()
@@ -113,7 +115,7 @@ class LSystem:
                 newinput += resp
         self.input = newinput
         print(self.input)
-    def drawPng(self, steps, width, height):
+    def drawPng(self, steps, width, height, origin=(0.5,0.5)):
         surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
         ctx = cairo.Context(surface)
         ctx.scale(width, height)  # Normalizing the canvas
@@ -125,7 +127,7 @@ class LSystem:
         ctx.rectangle(0, 0, 1, 1)  # Rectangle(x0, y0, x1, y1)
         ctx.set_source(pat)
         ctx.fill()
-        ctx.translate(0.5, 0.5)  # Changing the current transformation matrix
+        ctx.translate(origin[0], origin[1])  # Changing the current transformation matrix
         for i in range(0,steps-1):
             self.step(None)
         self.step(ctx)
@@ -134,22 +136,23 @@ class LSystem:
 
 striangle = LSystem("striangle")
 striangle.setAngle(120)
+striangle.setScale(0.01)
 striangle.bind("F", LSystem.FORWARD)
 striangle.bind("G", LSystem.FORWARD)
 striangle.addRule("F", "F-G+F+G-F")
 striangle.addRule("G", "GG")
 striangle.setStart("F-G-G")
-#striangle.drawPng(7, 4096, 4096)
+#striangle.drawPng(7, 4096, 4096, (0.2, 0.7))
 
 striangle2 = LSystem("striangle2")
 striangle2.setAngle(60)
-striangle2.setScale(0.002)
+striangle2.setScale(0.003)
 striangle2.bind("A", LSystem.FORWARD)
 striangle2.bind("B", LSystem.FORWARD)
 striangle2.addRule("A", "B-A-B")
 striangle2.addRule("B", "A+B+A")
 striangle2.setStart("A")
-#striangle2.drawPng(10, 4096, 4096)
+#striangle2.drawPng(9, 4096, 4096, (0.12, 0.2))
 
 dragon = LSystem("dragon")
 dragon.setAngle(90)
@@ -158,7 +161,7 @@ dragon.addRule("X", "X+YF+")
 dragon.addRule("Y", "-FX-Y")
 dragon.setStart("FX")
 dragon.setScale(0.005)
-dragon.drawPng(18, 4096, 4096)
+dragon.drawPng(16, 4096, 4096, (0.5, 0.77))
 
 plant = LSystem("plant")
 plant.setAngle(25)
