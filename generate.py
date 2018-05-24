@@ -1,3 +1,9 @@
+# Author: Daniel Palm
+# Copyright 2018
+# 
+# Implementation of L-Systems, using a simple "Turtle" for drawing, and cairo for generating a png.
+# Based on LSystem definitions from wikipedia
+
 #!/usr/bin/env python
 
 import math
@@ -5,16 +11,6 @@ import cairo
 import copy
 import numpy as np
 
-#turtle = Turtle()
-#turtle.setSpacing(0.01)
-#turtle.penDown()
-#turtle.forward(ctx)
-#turtle.turnLeft(90)
-#turtle.forward(ctx)
-#turtle.turnLeft(90);
-#turtle.forward(ctx)
-#turtle.turnRight(90);
-#turtle.forward(ctx)
 
 class Turtle:
     def __init__(self):
@@ -162,7 +158,7 @@ dragon.addRule("X", "X+YF+")
 dragon.addRule("Y", "-FX-Y")
 dragon.setStart("FX")
 dragon.setScale(0.005)
-#dragon.drawPng(18, 4096, 4096)
+dragon.drawPng(18, 4096, 4096)
 
 plant = LSystem("plant")
 plant.setAngle(25)
@@ -171,4 +167,4 @@ plant.bind("F", LSystem.FORWARD)
 plant.addRule("X", "F+[[X]-X]-F[-FX]+X")
 plant.addRule("F", "FF")
 plant.setStart("X")
-plant.drawPng(10, 4096, 4096)
+#plant.drawPng(10, 4096, 4096)
