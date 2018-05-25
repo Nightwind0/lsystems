@@ -181,7 +181,7 @@ hilbert.bind("F", LSystem.FORWARD)
 hilbert.addRule("L", "+RF-LFL-FR+")
 hilbert.addRule("R", "-LF+RFR+FL-")
 hilbert.setStart("L")
-hilbert.drawPng(9, 4096, 4096, (0.0,0.0))
+#hilbert.drawPng(9, 4096, 4096, (0.0,0.0))
 
 #It is also a Lindenmayer system and the curve can be encoded with initial string "X", string rewriting rules "X" -> "XFYFX+F+YFXFY-F-XFYFX", "Y" -> "YFXFY-F#-XFYFX+F+YFXFY", and angle 90 degrees
 hilbert2 = LSystem("hilbert2_curve")
@@ -192,3 +192,14 @@ hilbert2.addRule("X", "XFYFX+F+YFXFY-F-XFYFX")
 hilbert2.addRule("Y", "YFXFY-F-XFYFX+F+YFXFY")
 hilbert2.setStart("X")
 #hilbert2.drawPng(7, 4096, 4096, (0.0,0.0))
+
+#Peano-Gosper curve (X -> X+YF++YF-FX--FXFX-YF+, Y -> -FX+YFYF++YF+FX--FX-Y, 60degrees)
+
+peano_gosper = LSystem("peano_gosper")
+peano_gosper.setAngle(60)
+peano_gosper.setScale(0.005)
+peano_gosper.bind("F", LSystem.FORWARD)
+peano_gosper.addRule("X", "X+YF++YF-FX--FXFX-YF+")
+peano_gosper.addRule("Y", "-FX+YFYF++YF+FX--FX-Y")
+peano_gosper.setStart("X")
+peano_gosper.drawPng(7, 4096, 4096, (1,0.5))
