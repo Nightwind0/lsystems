@@ -4,3 +4,4 @@ LSystems are a simple grammar and set of rules which, when repeatedly applied, c
 ![dragon fractal](https://github.com/Nightwind0/lsystems/blob/master/images/dragon.png)
 ![sierpenski fractal](https://github.com/Nightwind0/lsystems/blob/master/images/striangle2.png)
 ![hilbert curve](https://github.com/Nightwind0/lsystems/blob/master/images/hilbert_curve.png)
+![peano gosper curve](https://github.com/Nightwind0/lsystems/blob/master/images/peano_gosper.png)
