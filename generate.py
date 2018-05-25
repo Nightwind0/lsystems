@@ -121,8 +121,8 @@ class LSystem:
         ctx.scale(width, height)  # Normalizing the canvas
 
         pat = cairo.LinearGradient(0.0, 0.0, 0.0, 1.0)
-        pat.add_color_stop_rgba(1, 0.7, 0, 0, 0.5)  # First stop, 50% opacity
-        pat.add_color_stop_rgba(0, 0.9, 0.7, 0.2, 1)  # Last stop, 100% opacity
+        pat.add_color_stop_rgba(1, 0.62, 0.98, 1.0, 1.0)  # First stop, 50% opacity
+        pat.add_color_stop_rgba(0, 0.404, 0.251, 0.588, 1)  # Last stop, 100% opacity
 
         ctx.rectangle(0, 0, 1, 1)  # Rectangle(x0, y0, x1, y1)
         ctx.set_source(pat)
@@ -142,7 +142,7 @@ striangle.bind("G", LSystem.FORWARD)
 striangle.addRule("F", "F-G+F+G-F")
 striangle.addRule("G", "GG")
 striangle.setStart("F-G-G")
-#striangle.drawPng(7, 4096, 4096, (0.2, 0.7))
+striangle.drawPng(7, 4096, 4096, (0.2, 0.7))
 
 striangle2 = LSystem("striangle2")
 striangle2.setAngle(60)
@@ -152,7 +152,7 @@ striangle2.bind("B", LSystem.FORWARD)
 striangle2.addRule("A", "B-A-B")
 striangle2.addRule("B", "A+B+A")
 striangle2.setStart("A")
-#striangle2.drawPng(9, 4096, 4096, (0.12, 0.2))
+striangle2.drawPng(9, 4096, 4096, (0.12, 0.2))
 
 dragon = LSystem("dragon")
 dragon.setAngle(90)
@@ -170,4 +170,4 @@ plant.bind("F", LSystem.FORWARD)
 plant.addRule("X", "F+[[X]-X]-F[-FX]+X")
 plant.addRule("F", "FF")
 plant.setStart("X")
-#plant.drawPng(10, 4096, 4096)
+plant.drawPng(10, 4096, 4096)
